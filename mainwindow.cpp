@@ -12,14 +12,14 @@ MainWindow::MainWindow(QWidget *parent)
     window = new QWidget(this);
     dragwin = new DragWidget();
     quiz = new Quiz();
+    setWindowTitle(tr("Easy English"));
+
 
     setCentralWidget(window);
-
 
     QVBoxLayout* layout = new QVBoxLayout(window);
     layout->setContentsMargins(15, 10, 15, 0);
     layout->setSpacing(5);
-
 
     window->setLayout(layout);
 
@@ -37,9 +37,6 @@ MainWindow::MainWindow(QWidget *parent)
     layout->addWidget(lineA);
 
     layout->addWidget(exitButton);
-
-
-
 
 
     QMenu *file = menuBar()->addMenu("App");
@@ -90,7 +87,6 @@ void MainWindow::actionQuiz() {
 void MainWindow::about() {
     QMessageBox msg;
     msg.setText("[EasyEnglish]\nVersion: 0.01\nAuthor: Akhmetov Timur");
-    msg.setDetailedText("Details:");
     msg.exec();
 }
 

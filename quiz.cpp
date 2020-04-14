@@ -8,20 +8,17 @@ Quiz::Quiz(QWidget *parent)
     : QWidget(parent)
     , lineCount(4)
 {
-    //setMinimumSize(150, 200);
-    this->resize(200, 200);
-    setWindowTitle(tr("Quiz"));
-
-    QVBoxLayout* layout = new QVBoxLayout(this);
-    layout->setSpacing(5);
-    layout->setAlignment( Qt::AlignBaseline);
-
-    this->setLayout(layout);
-
     shownWord = new QLabel();
     radio = new QRadioButton[lineCount];
     right = new QLabel();
     wrong = new QLabel();
+
+
+    QVBoxLayout* layout = new QVBoxLayout(this);
+    //layout->setSpacing(5);
+    layout->setAlignment( Qt::AlignBaseline);
+    this->setLayout(layout);
+
 
     right->setStyleSheet("color: rgb(0, 255, 0)");
     right->setAlignment(Qt::AlignLeft);
@@ -33,36 +30,41 @@ Quiz::Quiz(QWidget *parent)
 
     shownWord->setAutoFillBackground(true);
     shownWord->setAlignment(Qt::AlignHCenter);
+    QFont font = shownWord->font();
+    font.setPixelSize(20);
+    shownWord->setFont(font);
 
-    layout->addStretch();
-    layout->addWidget(shownWord);
-    layout->addStretch();
 
     auto lineA = new QFrame(this);
     lineA->setFrameShape(QFrame::HLine);
     lineA->setFrameShadow(QFrame::Sunken);
-    layout->addWidget(lineA);
 
-
-
-    for (int i=0; i<lineCount; i++) {
-        layout->addWidget(&radio[i]);
-    }
-    //radio->setChecked(true);
-
-    layout->addStretch();
 
     QPushButton* nextButton = new QPushButton("Next", this);
     connect(nextButton, &QPushButton::clicked, this, &Quiz::next);
-    layout->addWidget(nextButton);
 
     QHBoxLayout* childLayout = new QHBoxLayout();
-    layout->addLayout(childLayout);
+
     childLayout->addWidget(right);
     childLayout->addWidget(wrong);
 
+
+    layout->addStretch();
+    layout->addWidget(shownWord);
+    layout->addStretch();
+    layout->addWidget(lineA);
+    for (int i=0; i<lineCount; i++) {
+        layout->addWidget(&radio[i]);
+    }
+    layout->addStretch();
+    layout->addWidget(nextButton);
+    layout->addLayout(childLayout);
+
+
     emit next(); //инициализация строк
 
+    this->resize(200, 200);
+    setWindowTitle(tr("Quiz"));
 
 }
 
@@ -73,7 +75,7 @@ Quiz::~Quiz() {
     delete wrong;
 }
 
-int Quiz::getRadioIndex()
+int Quiz::getIndexOfCheckedRadio()
 {
     for (int i=0; i<lineCount; i++) {
         if (radio[i].isChecked() )
@@ -90,11 +92,10 @@ void Quiz::next()
     QRandomGenerator rand = QRandomGenerator::securelySeeded();
     if (!key.isEmpty()) {
         QString str1 = map[key];
-        QString str2 = radio[getRadioIndex()].text();
-        //qDebug() << str1 << ' ' << str2;
+        QString str2 = radio[getIndexOfCheckedRadio()].text();
+
         if (QString::compare(str1, str2) == 0 ) {
             right->setNum(right->text().toInt() + 1);
-            //qDebug() << " !key.isEmpty(map[key])";
         } else {
             wrong->setNum(wrong->text().toInt() + 1);
             QMessageBox msg;
@@ -106,7 +107,7 @@ void Quiz::next()
     auto it = map.begin();
     key = (it+rand.bounded(lineCount)).key();
 
-    shownWord->setText( key );
+    shownWord->setText(key);
 
     for (int i=0; i<lineCount; i++, it++) {
         radio[i].setText(it.value() );

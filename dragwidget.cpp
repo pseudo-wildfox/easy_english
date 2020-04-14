@@ -31,7 +31,7 @@ DragWidget::DragWidget(QWidget *parent)
     for(int i=0; i < dataBase.size(); i++) {
         QString word;
         word = dataBase.at(i).first;
-        set.insert(dataBase.at(i).second);
+        descSet.insert(dataBase.at(i).second);
         if (!word.isEmpty()) {
             QLabel *wordLabel = createDragLabel(word, this);
             wordLabel->move(x, y);
@@ -47,18 +47,16 @@ DragWidget::DragWidget(QWidget *parent)
 
 
 
-    this->label = new QLabel(this);
-    label->move(100, y+70);
-    label->setMaximumWidth(250);
-    label->setAlignment(Qt::AlignHCenter);
-    //label->setMaximumWidth(140);
-    //label->resize(140, 50);
-    label->setWordWrap(true);
-    label->setText(*set.begin());
+    this->shownDesc = new QLabel(this);
+    shownDesc->move(100, y+70);
+    shownDesc->setMaximumWidth(250);
+    shownDesc->setAlignment(Qt::AlignHCenter);
+    shownDesc->setWordWrap(true);
+    shownDesc->setText(*descSet.begin());
 
-    QFont font = label->font();
+    QFont font = shownDesc->font();
     font.setPixelSize(20);
-    label->setFont(font);
+    shownDesc->setFont(font);
 
     timeLabel = new QLabel(this);
     timeLabel->move(120, y+35);
@@ -73,6 +71,11 @@ DragWidget::DragWidget(QWidget *parent)
     setWindowTitle(tr("Draggable Text"));
 }
 
+DragWidget::~DragWidget() {
+    delete shownDesc;
+    delete timeLabel;
+}
+
 void DragWidget::slotTimerAlarm() {
     static auto startTime = QTime::currentTime();
     int difference = startTime.secsTo(QTime::currentTime());
@@ -84,18 +87,18 @@ void DragWidget::slotTimerAlarm() {
 
 bool DragWidget::nextStep(QString str) {
     if(!str.isEmpty()) {
-        QString question = label->text();
+        QString question = shownDesc->text();
         auto dragedWord = ProxySingleton<XmlApi>::instance().findByWord(str);
         if (dragedWord.second == question) {
-            set.remove(question);
-            if (set.size()) {
-                label->setText(*set.begin());
-                label->adjustSize();
-                label->setAlignment(Qt::AlignHCenter);
+            descSet.remove(question);
+            if (descSet.size()) {
+                shownDesc->setText(*descSet.begin());
+                shownDesc->adjustSize();
+                shownDesc->setAlignment(Qt::AlignHCenter);
 
             }
             else
-                label->setText("The end");
+                shownDesc->setText("The end");
 
             return true;
         }

@@ -14,19 +14,16 @@ QT_END_NAMESPACE
 class DragWidget : public QWidget
 {
     Q_OBJECT
-    QSet<QString>  set;
-    QLabel      *label;
-    QLabel  *timeLabel;
+    QSet<QString>  descSet;
+    QLabel      *shownDesc;
+    QLabel      *timeLabel;
 
     int x;
     int y;
 
 public:
     explicit DragWidget(QWidget *parent = nullptr);
-    virtual ~DragWidget() override {
-        delete label;
-        delete timeLabel;
-    }
+    virtual ~DragWidget() override;
 
 private slots:
     void slotTimerAlarm();

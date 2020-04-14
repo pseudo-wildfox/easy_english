@@ -25,8 +25,8 @@ public:
 private:
     Ui::MainWindow  *ui;
     QWidget     *window;
-    DragWidget  *dragwin;
-    Quiz        *quiz;
+    DragWidget *dragwin;
+    Quiz          *quiz;
 
 private slots:
 

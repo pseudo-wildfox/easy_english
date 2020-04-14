@@ -18,7 +18,7 @@ private:
 public:
     explicit Quiz(QWidget *parent = nullptr);
     virtual ~Quiz();
-    int getRadioIndex();
+    int getIndexOfCheckedRadio();
 private slots:
     void next();
 };
