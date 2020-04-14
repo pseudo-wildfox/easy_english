@@ -1,0 +1,32 @@
+<Dictionary Language="English">
+    <Value word="accessibility" desc="доступность" fame="0" />
+    <Value word="compressed" desc="сжатый" fame="0" />
+    <Value word="connection" desc="подключение" fame="0" />
+    <Value word="caption" desc="надпись" fame="0" />
+    <Value word="compiler" desc="компилятор" fame="0" />
+    <Value word="default" desc="по умолчанию" fame="0" />
+    <Value word="desktop" desc="рабочий стол" fame="0" />
+    <Value word="toolbar" desc="панель инструментов" fame="0" />
+    <Value word="download" desc="загрузка" fame="0" />
+    <Value word="drag" desc="перетащить (объект)" fame="0" />
+    <Value word="hot-zone" desc="область взаимодействия" fame="0" />
+    <Value word="label" desc="метка" fame="0" />
+    <Value word="link " desc="ссылка" fame="0" />
+    <Value word="panning" desc="сдвиг" fame="0" />
+    <Value word="shortcut" desc="ярлык" fame="0" />
+    <Value word="taskbar" desc="панель задач" fame="0" />
+    <Value word="template" desc="шаблон" fame="0" />
+    <Value word="add-on" desc="дополнение" fame="0" />
+    <Value word="adware" desc="рекламная программа" fame="0" />
+    <Value word="barcode" desc="штрих-код" fame="0" />
+    <Value word="bug" desc="программная ошибка" fame="0" />
+    <Value word="build-in" desc="встраивать" fame="0" />
+    <Value word="clipboard" desc="буфер обмена" fame="0" />
+    <Value word="control-panel" desc="панель управления" fame="0" />
+    <Value word="coverage" desc="охват " fame="0" />
+    <Value word="layout" desc="макет (разметка)" fame="0" />
+    <Value word="node" desc="узел" fame="0" />
+    <Value word="wireless" desc="беспроводной" fame="0" />
+    <Value word="storage" desc="хранилище" fame="0" />
+    <Value word="scrollbar" desc="полоса прокрутки" fame="0" />
+</Dictionary >
