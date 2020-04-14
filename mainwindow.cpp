@@ -73,20 +73,11 @@ MainWindow::~MainWindow()
 }
 
 void MainWindow::actionPuzzle() {
-    qDebug() << "actionPuzzle";
     if (dragwin != nullptr) {
-        qDebug() << "!=";
         if (dragwin->isHidden()) {
-            qDebug() << "show";
             dragwin->show();
-        } else {
-            delete dragwin;
-            qDebug() << "emit";
-            dragwin = nullptr;
-            emit actionPuzzle();
         }
     } else {
-        qDebug() << "else";
         dragwin = new DragWidget();
         dragwin->show();
     }
