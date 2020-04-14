@@ -1,15 +1,19 @@
 #ifndef PROXYSINGLETON_H
 #define PROXYSINGLETON_H
 #include <QtWidgets>
-#include "idb.h"
+#include "IDB.h"
 
 
 template <typename Impl>
 class ProxySingleton : public IDB {
+private:
     IDB * db;
-    ProxySingleton() {
-        db = new Impl;
-    }
+
+    ProxySingleton()
+        : db (new Impl)
+    {}
+    ProxySingleton(ProxySingleton& ps) = delete;
+    ProxySingleton& operator= (ProxySingleton& ps) = delete;
 public:
     static ProxySingleton& instance() {
         static ProxySingleton *singleton = new ProxySingleton;
@@ -34,8 +38,6 @@ public:
     ~ProxySingleton() {
         delete db;
     }
-    ProxySingleton(ProxySingleton& ps) = delete;
-    ProxySingleton& operator= (ProxySingleton& ps) = delete;
 };
 
 

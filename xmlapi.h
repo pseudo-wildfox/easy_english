@@ -3,7 +3,7 @@
 
 #include <QDomDocument>
 #include <QtWidgets>
-#include "idb.h"
+#include "IDB.h"
 
 class XmlApi : public IDB
 {
@@ -17,7 +17,7 @@ public:
     QPair<QString, QString> findByWord(QString word) override;
     QPair<QString, QString> at(int index)            override;
     QMap<QString, QString>  getRand(int size)        override;
-    virtual ~XmlApi() {}
+    ~XmlApi() override {}
 };
 
 

@@ -11,29 +11,22 @@ public:
         qDebug() << "idb::size";
         return 0;
     }
-    virtual void printAll()
-    {
+    virtual void printAll()  {
         qDebug() << "idb::printAll";
     }
-    virtual QPair<QString, QString> findByWord (QString word)
-    {
+    virtual QPair<QString, QString> findByWord (QString word) {
         qDebug() << "idb::findByWord";
         return QPair<QString, QString> (word,"");
     }
-    virtual QPair<QString, QString> at(int index)
-    {
+    virtual QPair<QString, QString> at(int index) {
         qDebug() << "idb::at " << index;
         return QPair<QString, QString> ("","");
     }
-    virtual QMap<QString, QString>  getRand(int size)
-    {
+    virtual QMap<QString, QString>  getRand(int size) {
         qDebug() << "idb::findByWord " << size;
         return QMap<QString, QString>();
     }
-
-    virtual ~IDB() {
-
-    }
+    virtual ~IDB() {}
 };
 
 

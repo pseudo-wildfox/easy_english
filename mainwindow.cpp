@@ -10,8 +10,8 @@ MainWindow::MainWindow(QWidget *parent)
 {
     ui->setupUi(this);
     window = new QWidget(this);
-    dragwin = new DragWidget();
     quiz = new Quiz();
+    dragwin = nullptr;
     setWindowTitle(tr("Easy English"));
 
 
@@ -68,12 +68,26 @@ MainWindow::~MainWindow()
 {
     delete ui;
     delete window;
-    delete dragwin;
-    delete quiz;
+    if (dragwin) delete dragwin;
+    if (quiz) delete quiz;
 }
 
 void MainWindow::actionPuzzle() {
-    if (!dragwin->isVisible()) {
+    qDebug() << "actionPuzzle";
+    if (dragwin != nullptr) {
+        qDebug() << "!=";
+        if (dragwin->isHidden()) {
+            qDebug() << "show";
+            dragwin->show();
+        } else {
+            delete dragwin;
+            qDebug() << "emit";
+            dragwin = nullptr;
+            emit actionPuzzle();
+        }
+    } else {
+        qDebug() << "else";
+        dragwin = new DragWidget();
         dragwin->show();
     }
 }

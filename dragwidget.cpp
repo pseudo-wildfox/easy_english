@@ -48,7 +48,7 @@ DragWidget::DragWidget(QWidget *parent)
 
 
     this->shownDesc = new QLabel(this);
-    shownDesc->move(100, y+70);
+    shownDesc->move(95, y+70);
     shownDesc->setMaximumWidth(250);
     shownDesc->setAlignment(Qt::AlignHCenter);
     shownDesc->setWordWrap(true);
@@ -62,6 +62,7 @@ DragWidget::DragWidget(QWidget *parent)
     timeLabel->move(120, y+35);
     timeLabel->setFont(font);
     timeLabel->setFrameShape(QFrame::Panel);
+    timeLabel->setText("00:00:00");
     QTimer * timer = new QTimer(this);
     connect(timer, SIGNAL(timeout()), this, SLOT(slotTimerAlarm()));
     timer->start(1000);
@@ -83,6 +84,7 @@ void DragWidget::slotTimerAlarm() {
     time = time.addSecs(difference);
 
     timeLabel->setText(time.toString("hh:mm:ss"));
+    //timeLabel->adjustSize();
 }
 
 bool DragWidget::nextStep(QString str) {
