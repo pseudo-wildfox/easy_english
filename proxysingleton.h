@@ -17,7 +17,6 @@ private:
     ProxySingleton& operator= (ProxySingleton& ps) = delete;
 public:
     static ProxySingleton& instance() {
-        //static ProxySingleton *singleton = new ProxySingleton;
         return *singleton;
     }
     int size() override {

@@ -36,6 +36,8 @@ void XmlApi::printAll()
 
     QDomNodeList nodeList = root.childNodes();
 
+
+
     for(int iDx = 0;iDx < nodeList.count(); iDx++) {
         QString word(nodeList.at(iDx).attributes().namedItem("word").nodeValue());
         QString desc(nodeList.at(iDx).attributes().namedItem("desc").nodeValue());
@@ -101,7 +103,6 @@ QMap<QString, QString> XmlApi::getRand(int size)
     while (map.size() < size) {
         auto value = this->at(rand.bounded(limit) );
         map.insert(value.first, value.second);
-        //qDebug() << "Test " << value << endl;
     }
     return map;
 }

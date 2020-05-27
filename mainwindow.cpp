@@ -18,7 +18,7 @@ MainWindow::MainWindow(QWidget *parent)
     setCentralWidget(window);
 
     QVBoxLayout* layout = new QVBoxLayout(window);
-    layout->setContentsMargins(15, 10, 15, 0);
+    layout->setContentsMargins(15, 10, 15, 15);
     layout->setSpacing(5);
 
     window->setLayout(layout);

@@ -1,6 +1,9 @@
 
 #include <QApplication>
 #include "mainwindow.h"
+#include "xmlapi.h"
+#include "proxysingleton.h"
+#include <QDebug>
 
 
 int main(int argc, char *argv[])
@@ -10,6 +13,8 @@ int main(int argc, char *argv[])
     QApplication app(argc, argv);
     MainWindow w;
     w.show();
+
+    ProxySingleton<XmlApi>::instance().printAll();
 
     return app.exec();
 }
